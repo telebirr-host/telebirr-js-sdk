@@ -16,6 +16,7 @@ name: E2E Smoke Tests
 
 # Allows REST trigger. Currently triggered by release-cli script during a staging run.
 on:
+  push:
   repository_dispatch:
     types: [staging-tests,canary-tests]
 
@@ -36,10 +37,10 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
-      - name: Set up Node (20)
+      - name: Set up Node (16)
         uses: actions/setup-node@master
         with:
-          node-version: 20.x
+          node-version: 16.x
       - name: install Chrome stable
         run: |
           sudo apt-get update
